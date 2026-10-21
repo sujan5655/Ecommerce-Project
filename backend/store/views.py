@@ -65,7 +65,7 @@ def update_cart_quantity(request):
     if int(quantity)<1:
       item.delete()
       return Response({'error':"Quantity must be at least 1"},status=400)
-    item.quantity=quantity
+    item.quantity=quantity+1
     item.save()
     serializer=CartItemSerializer(item)
     return Response(serializer.data)

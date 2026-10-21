@@ -72,7 +72,7 @@ function ProductDetails() {
             </p>
 
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product.id)}
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
             >
               Add to Cart

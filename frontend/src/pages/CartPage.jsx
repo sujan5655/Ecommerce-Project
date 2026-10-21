@@ -1,13 +1,13 @@
 import { useCart } from "../context/CartContext";
 
 function CartPage() {
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  const { cartItems, total, removeFromCart, updateQuantity } = useCart();
 
   // Calculate total price
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
+  // const total = cartItems.reduce(
+  //   (acc, item) => acc + item.price * item.quantity,
+  //   0,
+  // );
 
   return (
     <div className="pt-20 min-h-screen bg-gray-100 p-8">
