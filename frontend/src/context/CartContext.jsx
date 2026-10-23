@@ -6,6 +6,8 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const BASEURL = import.meta.env.VITE_DJANGO_BASE_URL;
+
   const fetchCart = async () => {
     try {
       const res = await fetch(`${BASEURL}/api/cart/`);
@@ -63,7 +65,7 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = async (itemId) => {
     try {
-      await fetch(`${BASEURL}/api/cart/remove`, {
+      await fetch(`${BASEURL}/api/cart/remove/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,6 +106,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+    setTotal(0);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -112,6 +119,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
       }}
     >
       {children}
