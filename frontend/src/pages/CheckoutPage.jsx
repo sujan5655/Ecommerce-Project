@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-
+import { authFetch } from "../utils/auth";
 function CheckoutPage() {
   const BASEURL = "http://127.0.0.1:8000";
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function CheckoutPage() {
     setIsError(false);
 
     try {
-      const res = await fetch(`${BASEURL}/api/orders/create/`, {
+      const res = await authFetch(`${BASEURL}/api/orders/create/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
